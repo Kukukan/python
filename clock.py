@@ -31,12 +31,12 @@ def solve() -> None:
     for m in range(1440):
         hh = m // 60
         mm = m % 60
-        hh_str = f"{hh:02d}"
-        mm_str = f"{mm:02d}"
+        hh_str = str(hh).zfill(2)
+        mm_str = str(mm).zfill(2)
         if hh_str == mm_str[::-1]:
             is_pal[m] = True
 
-    data = sys.stdin.read().strip().split()
+    data = sys.stdin.buffer.read().split()
     if not data:
         return
     it = iter(data)
@@ -45,8 +45,8 @@ def solve() -> None:
     for _ in range(T):
         S = next(it)
         X = int(next(it))
-        hh = int(S[0:2])
-        mm = int(S[3:5])
+        hh = int(S[:2])
+        mm = int(S[3:])
         start = hh * 60 + mm
 
         g = math.gcd(X, 1440)

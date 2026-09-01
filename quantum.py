@@ -27,12 +27,12 @@ def solve():
             print(dist[idx])
             return
         # assign dist to current index
-        d = dist[idx]
+        d = dist[idx] + 1
 
         # jump left/right
         for next_idx in [idx - 1, idx + 1]:
             if next_idx >= 0 and next_idx < n and dist[next_idx] == -1:
-                dist[next_idx] = dist[idx] + 1
+                dist[next_idx] = d
                 q.append(next_idx)
 
         # teleport
@@ -46,7 +46,7 @@ def solve():
             if target_idx in val_to_idx:
                 for next_idx in val_to_idx[target_idx]:
                     if dist[next_idx] == -1:
-                        dist[next_idx] = dist[idx] + 1
+                        dist[next_idx] = d
                         q.append(next_idx)
                 
                 # remove target value to avoid future process
